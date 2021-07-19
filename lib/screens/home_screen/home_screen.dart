@@ -18,7 +18,11 @@ class HomeScreen extends StatelessWidget {
           ),
           Text(
             "จำนวนผู้ป่วยเพิ่มขึ้นวันนี้",
-            style: context.textTheme.headline4,
+            style: context.responsiveValue(
+              desktop: context.textTheme.headline4,
+              tablet: context.textTheme.headline4,
+              mobile: context.textTheme.headline5,
+            ),
           ),
           // * Time of result
           Text(
@@ -30,7 +34,7 @@ class HomeScreen extends StatelessWidget {
           ),
           // * Result Number
           Text(
-            "+1000",
+            "+124",
             style:
                 context.textTheme.headline1!.copyWith(color: Colors.red[400]),
           ),

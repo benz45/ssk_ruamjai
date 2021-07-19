@@ -27,7 +27,7 @@ class ContainerNumberOfBed extends StatelessWidget {
       ),
     );
     final tablet = Container(
-      width: context.width * .4,
+      width: context.width * .7,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: _listData,
@@ -38,7 +38,10 @@ class ContainerNumberOfBed extends StatelessWidget {
       children: [
         Text(
           "จำนวนเตียงที่ว่างทั้งหมด",
-          style: context.textTheme.headline4,
+          style: context.responsiveValue(
+              desktop: context.textTheme.headline4,
+              tablet: context.textTheme.headline4,
+              mobile: context.textTheme.headline5),
         ),
         // * Result Number
         Padding(

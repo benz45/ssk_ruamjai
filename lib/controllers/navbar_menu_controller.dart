@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class NavBarMenuController extends GetxController {
-  RxInt _selectedIndex = 0.obs;
+  // Number of screen
+  RxInt _selectedIndex = 2.obs;
 
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final ScrollController _scrollController = ScrollController();

@@ -1,3 +1,4 @@
+import 'package:animated_size_and_fade/animated_size_and_fade.dart';
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,10 +7,11 @@ import 'package:ssk_ruamjai/bindings/operation_bindings.dart';
 import 'package:ssk_ruamjai/components/k_drawer.dart';
 import 'package:ssk_ruamjai/components/navbar/navbar.dart';
 import 'package:ssk_ruamjai/controllers/navbar_menu_controller.dart';
+import 'package:ssk_ruamjai/screens/authorities_level_one/authorities_level_one.dart';
+import 'package:ssk_ruamjai/screens/form_add_patient/form_add_patient.dart';
 import 'package:ssk_ruamjai/screens/home_screen/home_screen.dart';
+import 'package:ssk_ruamjai/screens/login_screen/login_screen.dart';
 import 'package:ssk_ruamjai/theme.dart';
-
-import 'screens/admin_page/admin_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,6 +32,10 @@ class Main extends StatelessWidget {
         GetPage(
           name: Operation.routeName,
           page: () => Operation(),
+        ),
+        GetPage(
+          name: FormAddPatient.routeName,
+          page: () => FormAddPatient(),
         ),
       ],
     );
@@ -98,7 +104,9 @@ class _SwitchSwitchPageState extends State<SwitchPage>
   final List<Widget> _listPosters = [
     HomeScreen(),
     SizedBox(),
-    AdminScreen(),
+    AuthoritiesLevelOne()
+    // TODO:
+    // LoginScreen(),
   ];
 
   final _navBarMenuController = Get.find<NavBarMenuController>();
@@ -108,13 +116,13 @@ class _SwitchSwitchPageState extends State<SwitchPage>
       delegate: SliverChildListDelegate(
         [
           Obx(
-            () => AnimatedSize(
-              curve: Curves.fastOutSlowIn,
-              duration: Duration(milliseconds: 300),
+            () => AnimatedSizeAndFade(
               vsync: this,
+              fadeDuration: const Duration(milliseconds: 300),
+              sizeDuration: const Duration(milliseconds: 300),
               child: PageTransitionSwitcher(
-                duration: Duration(milliseconds: 300),
-                reverse: false,
+                duration: Duration(milliseconds: 500),
+                reverse: true,
                 transitionBuilder: (
                   Widget child,
                   Animation<double> animation,

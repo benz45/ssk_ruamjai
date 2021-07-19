@@ -8,7 +8,11 @@ class ContainerNumberOfRecover extends StatelessWidget {
       children: [
         Text(
           "จำนวนผู้ป่วยที่หายแล้ววันนี้",
-          style: context.textTheme.headline4,
+          style: context.responsiveValue(
+            desktop: context.textTheme.headline4,
+            tablet: context.textTheme.headline4,
+            mobile: context.textTheme.headline5,
+          ),
         ),
         // * Result Number
         Text(

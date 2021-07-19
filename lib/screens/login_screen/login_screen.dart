@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ssk_ruamjai/components/navbar/navbar.dart';
-import 'package:ssk_ruamjai/screens/admin_page/components/content_admin_poster.dart';
-import 'package:ssk_ruamjai/screens/admin_page/components/content_login.dart';
+import 'package:ssk_ruamjai/screens/login_screen/components/content_login.dart';
+import 'package:ssk_ruamjai/screens/login_screen/components/content_login_title.dart';
 import 'package:ssk_ruamjai/util/constants.dart';
 
-class AdminScreen extends StatelessWidget {
+class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double maxWidth = kDefaultPadding * 4;
@@ -18,7 +18,7 @@ class AdminScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          ContentAdminPoster(),
+          ContentLoginTitle(),
           ContentLogin(),
         ],
       ),
@@ -30,7 +30,7 @@ class AdminScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          ContentAdminPoster(),
+          ContentLoginTitle(),
           ContentLogin(),
         ],
       ),

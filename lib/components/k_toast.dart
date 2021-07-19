@@ -6,11 +6,11 @@ void kToast(String title, Widget message, {Function(GetBar<Object>)? onTap}) {
   Get.snackbar(
     '', // title
     '',
-    messageText: message, // message
     titleText: Text(
       title,
       style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),
     ),
+    messageText: message, // message
     snackPosition: SnackPosition.BOTTOM,
     barBlur: 20,
     isDismissible: true,

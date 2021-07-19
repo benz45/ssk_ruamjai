@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ssk_ruamjai/util/constants.dart';
 
-class ContentAdminPoster extends StatelessWidget {
+class ContentLoginTitle extends StatelessWidget {
   final double subTitleFontSize = 22.0;
 
   @override
@@ -41,7 +41,7 @@ class ContentAdminPoster extends StatelessWidget {
                 tablet: context.textTheme.headline6,
                 mobile: context.textTheme.headline6,
               )
-              ?.copyWith(color: Colors.grey[500]),
+              ?.copyWith(color: Colors.grey[500], fontWeight: FontWeight.w300),
         ),
         SizedBox(
           height: 8,
@@ -54,7 +54,7 @@ class ContentAdminPoster extends StatelessWidget {
                 tablet: context.textTheme.headline6,
                 mobile: context.textTheme.headline6,
               )
-              ?.copyWith(color: Colors.grey[500]),
+              ?.copyWith(color: Colors.grey[500], fontWeight: FontWeight.w300),
         ),
         SizedBox(
           height: 8,
@@ -67,7 +67,7 @@ class ContentAdminPoster extends StatelessWidget {
                 tablet: context.textTheme.headline6,
                 mobile: context.textTheme.headline6,
               )
-              ?.copyWith(color: Colors.grey[500]),
+              ?.copyWith(color: Colors.grey[500], fontWeight: FontWeight.w300),
         ),
         SizedBox(
           height: 8,
@@ -80,7 +80,7 @@ class ContentAdminPoster extends StatelessWidget {
                 tablet: context.textTheme.headline6,
                 mobile: context.textTheme.headline6,
               )
-              ?.copyWith(color: Colors.grey[500]),
+              ?.copyWith(color: Colors.grey[500], fontWeight: FontWeight.w300),
         ),
         SizedBox(
           height: 8,
@@ -93,7 +93,7 @@ class ContentAdminPoster extends StatelessWidget {
                 tablet: context.textTheme.headline6,
                 mobile: context.textTheme.headline6,
               )
-              ?.copyWith(color: Colors.grey[500]),
+              ?.copyWith(color: Colors.grey[500], fontWeight: FontWeight.w300),
         ),
         SizedBox(
           height: kDefaultPadding,
