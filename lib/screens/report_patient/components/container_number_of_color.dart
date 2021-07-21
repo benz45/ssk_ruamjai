@@ -49,47 +49,15 @@ class ContainerNumberOfColor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final desktop = Column(
-      children: [
-        Text(
-          "จำนวนผู้ป่วยรายวัน",
-          style: context
-              .responsiveValue(
-                  desktop: context.textTheme.headline4,
-                  tablet: context.textTheme.headline4,
-                  mobile: context.textTheme.headline5)!
-              .copyWith(
-                color: Colors.black87,
-              ),
-        ),
-        SizedBox(height: kDefaultPadding * 4),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: _listData,
-        )
-      ],
+    Row desktop = Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: _listData,
     );
 
     Column tablet = Column(
-      children: [
-        Text(
-          "จำนวนเตียงที่ว่างทั้งหมด",
-          style: context
-              .responsiveValue(
-                  desktop: context.textTheme.headline4,
-                  tablet: context.textTheme.headline4,
-                  mobile: context.textTheme.headline5)!
-              .copyWith(
-                color: Colors.black87,
-              ),
-        ),
-        SizedBox(height: kDefaultPadding * 4),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: _listData,
-        )
-      ],
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: _listData,
     );
     return context.responsiveValue(
       desktop: desktop,
@@ -115,7 +83,7 @@ class NumberOfColor extends StatelessWidget {
     final _desktop = Column(
       children: [
         Text(
-          '$value',
+          '+$value',
           style: context.textTheme.headline4!.copyWith(color: Colors.black54),
         ),
         Row(

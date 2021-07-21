@@ -14,6 +14,7 @@ Theme themeBuilder(BuildContext context, Widget? child) {
   }
 
   var text = context.textTheme;
+
   return Theme(
     data: ThemeData(
       fontFamily: 'Prompt',

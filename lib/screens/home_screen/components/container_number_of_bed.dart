@@ -38,18 +38,76 @@ class ContainerNumberOfBed extends StatelessWidget {
       children: [
         Text(
           "จำนวนเตียงที่ว่างทั้งหมด",
-          style: context.responsiveValue(
-              desktop: context.textTheme.headline4,
-              tablet: context.textTheme.headline4,
-              mobile: context.textTheme.headline5),
+          style: context
+              .responsiveValue(
+                  desktop: context.textTheme.headline4,
+                  tablet: context.textTheme.headline4,
+                  mobile: context.textTheme.headline5)!
+              .copyWith(color: Colors.black87),
         ),
+        context.isPhone
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "จังหวัดศรีสะเกษ",
+                    style: context
+                        .responsiveValue(
+                            desktop: context.textTheme.headline5,
+                            tablet: context.textTheme.headline5,
+                            mobile: context.textTheme.headline6)!
+                        .copyWith(color: Colors.blue.shade500),
+                  ),
+                  SizedBox(
+                    width: context.width * .6,
+                    height: kDefaultPadding,
+                    child: Divider(
+                      thickness: 1,
+                      color: Colors.grey[200],
+                    ),
+                  ),
+                  Text(
+                    "ข้อมูล ณ เวลา 13.40 น.",
+                    style: context.textTheme.subtitle1!
+                        .copyWith(color: Colors.black54),
+                  ),
+                ],
+              )
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "จังหวัดศรีสะเกษ",
+                    style: context
+                        .responsiveValue(
+                            desktop: context.textTheme.headline5,
+                            tablet: context.textTheme.headline5,
+                            mobile: context.textTheme.headline6)!
+                        .copyWith(color: Colors.blue.shade500),
+                  ),
+                  SizedBox(
+                    width: kDefaultPadding * 2,
+                    height: kDefaultPadding,
+                    child: VerticalDivider(
+                      thickness: 1,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  Text(
+                    "ข้อมูล ณ เวลา 13.40 น.",
+                    style: context.textTheme.headline6!
+                        .copyWith(color: Colors.black54),
+                  ),
+                ],
+              ),
+
         // * Result Number
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: kDefaultPadding * 2),
+          padding: const EdgeInsets.symmetric(vertical: kDefaultPadding * 3),
           child: Text(
             "245",
             style:
-                context.textTheme.headline2!.copyWith(color: Colors.blue[400]),
+                context.textTheme.headline1!.copyWith(color: Colors.blue[500]),
           ),
         ),
         context.responsiveValue(
@@ -74,14 +132,17 @@ class NumberOfBed extends StatelessWidget {
     final _desktop = Column(
       children: [
         Text(
-          '$value',
-          style: context.textTheme.headline4!
-              .copyWith(color: Colors.blue.shade400),
-        ),
-        Text(
           title,
           style: context.textTheme.headline6!.copyWith(color: Colors.black54),
-        )
+        ),
+        SizedBox(
+          height: kDefaultPadding,
+        ),
+        Text(
+          '$value',
+          style: context.textTheme.headline3!
+              .copyWith(color: Colors.blue.shade500),
+        ),
       ],
     );
 
@@ -97,7 +158,7 @@ class NumberOfBed extends StatelessWidget {
           Text(
             '$value',
             style: context.textTheme.headline6!
-                .copyWith(color: Colors.blue.shade400),
+                .copyWith(color: Colors.blue.shade500),
           ),
         ],
       ),

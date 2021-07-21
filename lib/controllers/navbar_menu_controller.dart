@@ -4,12 +4,13 @@ import 'package:get/get.dart';
 
 class NavBarMenuController extends GetxController {
   // Number of screen
-  RxInt _selectedIndex = 2.obs;
+  RxInt _selectedIndex = 0.obs;
 
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final ScrollController _scrollController = ScrollController();
 
-  List<String> _menuItems = ['หน้าหลัก', 'ติดต่อ', 'สำหรับเจ้าหน้าที่'].obs;
+  List<String> _menuItems =
+      ['หน้าหลัก', 'รายงานผู้ป่วย', 'ติดต่อ', 'สำหรับเจ้าหน้าที่'].obs;
 
   List<String> get getMenuItems => _menuItems;
 
