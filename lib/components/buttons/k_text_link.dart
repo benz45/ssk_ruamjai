@@ -34,6 +34,7 @@ class _KTextLinkState extends State<KTextLink> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: widget.onPressed,
+      hoverColor: Colors.transparent,
       onHover: (value) {
         setState(() {
           _isHover = value;

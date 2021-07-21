@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:ssk_ruamjai/components/buttons/k_button.dart';
+import 'package:ssk_ruamjai/components/buttons/k_text_button.dart';
+import 'package:ssk_ruamjai/components/buttons/k_text_link.dart';
 import 'package:ssk_ruamjai/components/k_toast.dart';
 import 'package:ssk_ruamjai/data.dart';
 import 'package:ssk_ruamjai/screens/form_edit_patient/form_edit_patient.dart';
@@ -99,8 +101,8 @@ class _DetailPatientState extends State<DetailPatient>
     "8": false
   };
 
-  // true = green
-  // false = yellow
+  // true = yellow
+  // false = red
   bool _status = true;
 
   void _onChangedCheckbox(_) {
@@ -173,53 +175,98 @@ class _DetailPatientState extends State<DetailPatient>
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "ข้อมูลผู้ป่วย",
-                                      style:
-                                          context.textTheme.headline6!.copyWith(
-                                        color: Colors.black87,
-                                      ),
+                                      "วีระพันธ์ บุญบุตร",
+                                      style: context.textTheme.headline5!
+                                          .copyWith(
+                                              color: Colors.black87,
+                                              fontWeight: FontWeight.w500),
                                     ),
                                     SizedBox(height: 8),
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          "วีระพันธ์ บุญบุตร",
-                                          style: context.textTheme.headline5!
-                                              .copyWith(
-                                            color: kPrimaryColor,
-                                          ),
-                                        ),
-                                        SizedBox(width: 8),
-                                        Container(
-                                          alignment: Alignment.center,
-                                          height: 64,
-                                          color: Colors.white,
-                                          child: Icon(
-                                            Icons.circle,
-                                            color: Colors.yellow.shade400,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                    KTextLink(
+                                      onPressed: () {
+                                        Get.toNamed(FormEditPatient.routeName);
+                                      },
+                                      arrowIcon: false,
+                                      text: "แก้ไขข้อมูลผู้ป่วย",
+                                    )
                                   ],
                                 ),
                               ),
                               Spacer(),
-                              // if (!value)
                               Container(
                                 width: context.isPhone
                                     ? kDefaultPadding * 6
                                     : kDefaultPadding * 8,
-                                child: KButton(
-                                  text: 'แก้ไขข้อมูล',
-                                  onPressed: () {
-                                    Get.toNamed(FormEditPatient.routeName);
+                                child: ValueBuilder(
+                                  initialValue: false,
+                                  builder: (bool? val, Function(bool)? update) {
+                                    return KButton(
+                                      isLoading: val!,
+                                      text: 'รับผู้ป่วยเข้า',
+                                      onPressed: () {
+                                        update!(true);
+                                      },
+                                    );
                                   },
                                 ),
                               )
                             ],
+                          ),
+                          // * สถานะผู้ป่วย
+                          SizedBox(
+                            height: kDefaultPadding * 4,
+                            child: Divider(),
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                "สถานะผู้ป่วย",
+                                style: context.textTheme.headline6,
+                              ),
+                              Spacer(),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: kDefaultPadding),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Checkbox(
+                                        value: _status,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(0),
+                                        ),
+                                        onChanged: _onChangedCheckbox),
+                                    Icon(
+                                      Icons.circle,
+                                      color: Colors.yellow.shade300,
+                                    ),
+                                    // Text('ผู้ป่วยเสี่ยง'),
+                                    SizedBox(
+                                      width: kDefaultPadding,
+                                    ),
+                                    Checkbox(
+                                        value: !_status,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(0),
+                                        ),
+                                        onChanged: _onChangedCheckbox),
+                                    Icon(
+                                      Icons.circle,
+                                      color: Colors.red.shade300,
+                                    ),
+                                    SizedBox(width: 8),
+                                    // Text('ผู้ป่วยเริ่มมีอาการ')
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: kDefaultPadding * 5,
+                            child: Divider(),
                           ),
                           DetailRow(
                             title1: "เลขบัตรประชาชน 13 หลัก",

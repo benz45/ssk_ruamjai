@@ -37,7 +37,7 @@ class KButton extends StatelessWidget {
               ),
             ),
             disabledColor: kDisabledPrimaryColor,
-            padding: EdgeInsets.symmetric(vertical: 29, horizontal: 36),
+            padding: EdgeInsets.symmetric(vertical: 31, horizontal: 36),
             color: kPrimaryColor,
             onPressed: enabled ? onPressed : null,
             child: Row(

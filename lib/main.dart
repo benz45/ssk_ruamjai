@@ -8,6 +8,7 @@ import 'package:ssk_ruamjai/components/k_drawer.dart';
 import 'package:ssk_ruamjai/components/navbar/navbar.dart';
 import 'package:ssk_ruamjai/controllers/navbar_menu_controller.dart';
 import 'package:ssk_ruamjai/screens/authorities_level_one/authorities_level_one.dart';
+import 'package:ssk_ruamjai/screens/authorities_level_two/authorities_level_two.dart';
 import 'package:ssk_ruamjai/screens/details_patient/details_patient.dart';
 import 'package:ssk_ruamjai/screens/form_add_patient/form_add_patient.dart';
 import 'package:ssk_ruamjai/screens/form_edit_patient/form_edit_patient.dart';
@@ -117,7 +118,7 @@ class _SwitchSwitchPageState extends State<SwitchPage>
     HomeScreen(),
     ReportPatient(),
     SizedBox(),
-    AuthoritiesLevelOne()
+    AuthoritiesLevelTwo()
     // TODO:
     // LoginScreen(),
   ];

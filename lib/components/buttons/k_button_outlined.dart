@@ -32,7 +32,7 @@ class KButtonOutlined extends StatelessWidget {
       child: OutlinedButton(
         style: ButtonStyle(
           padding: MaterialStateProperty.all(
-            EdgeInsets.symmetric(vertical: 29, horizontal: 36),
+            EdgeInsets.symmetric(vertical: 31, horizontal: 36),
           ),
           overlayColor: MaterialStateProperty.all(Colors.grey[100]),
           shape: MaterialStateProperty.all(
