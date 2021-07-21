@@ -10,13 +10,13 @@ import 'package:ssk_ruamjai/components/k_toast.dart';
 import 'package:ssk_ruamjai/data.dart';
 import 'package:ssk_ruamjai/util/constants.dart';
 
-class FormAddPatient extends StatefulWidget {
-  static const routeName = '/add_patient';
+class FormEditPatient extends StatefulWidget {
+  static const routeName = '/edit_patient';
   @override
-  _FormAddFormAddPatientState createState() => _FormAddFormAddPatientState();
+  _FormEditPatientState createState() => _FormEditPatientState();
 }
 
-class _FormAddFormAddPatientState extends State<FormAddPatient>
+class _FormEditPatientState extends State<FormEditPatient>
     with TickerProviderStateMixin {
   // Format id card
   var idMaskFormatter = MaskTextInputFormatter(
@@ -137,7 +137,7 @@ class _FormAddFormAddPatientState extends State<FormAddPatient>
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    "เพิ่มผู้ป่วย",
+                    "แก้ไขข้อมูลผู้ป่วย",
                     style: context.textTheme.headline5,
                   ),
                   Text(

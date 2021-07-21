@@ -8,9 +8,11 @@ import 'package:ssk_ruamjai/components/k_drawer.dart';
 import 'package:ssk_ruamjai/components/navbar/navbar.dart';
 import 'package:ssk_ruamjai/controllers/navbar_menu_controller.dart';
 import 'package:ssk_ruamjai/screens/authorities_level_one/authorities_level_one.dart';
+import 'package:ssk_ruamjai/screens/details_patient/details_patient.dart';
 import 'package:ssk_ruamjai/screens/form_add_patient/form_add_patient.dart';
+import 'package:ssk_ruamjai/screens/form_edit_patient/form_edit_patient.dart';
 import 'package:ssk_ruamjai/screens/home_screen/home_screen.dart';
-import 'package:ssk_ruamjai/screens/login_screen/login_screen.dart';
+import 'package:ssk_ruamjai/screens/report_patient/report_patient.dart';
 import 'package:ssk_ruamjai/theme.dart';
 
 void main() async {
@@ -37,6 +39,14 @@ class Main extends StatelessWidget {
           name: FormAddPatient.routeName,
           page: () => FormAddPatient(),
         ),
+        GetPage(
+          name: FormEditPatient.routeName,
+          page: () => FormEditPatient(),
+        ),
+        GetPage(
+          name: DetailPatient.routeName,
+          page: () => DetailPatient(),
+        ),
       ],
     );
   }
@@ -44,6 +54,7 @@ class Main extends StatelessWidget {
   // Load image from first re-rander
   loadImage(context) {
     precacheImage(AssetImage('assets/images/logo.png'), context);
+    precacheImage(AssetImage('assets/images/virus.png'), context);
   }
 }
 
@@ -94,6 +105,7 @@ class FetchNewsData extends StatelessWidget {
   }
 }
 
+// Switch page
 class SwitchPage extends StatefulWidget {
   @override
   _SwitchSwitchPageState createState() => _SwitchSwitchPageState();
@@ -103,6 +115,7 @@ class _SwitchSwitchPageState extends State<SwitchPage>
     with SingleTickerProviderStateMixin {
   final List<Widget> _listPosters = [
     HomeScreen(),
+    ReportPatient(),
     SizedBox(),
     AuthoritiesLevelOne()
     // TODO:
@@ -121,7 +134,7 @@ class _SwitchSwitchPageState extends State<SwitchPage>
               fadeDuration: const Duration(milliseconds: 300),
               sizeDuration: const Duration(milliseconds: 300),
               child: PageTransitionSwitcher(
-                duration: Duration(milliseconds: 500),
+                duration: Duration(milliseconds: 400),
                 reverse: true,
                 transitionBuilder: (
                   Widget child,

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:ssk_ruamjai/components/buttons/k_button.dart';
 import 'package:ssk_ruamjai/components/buttons/k_button_outlined.dart';
 import 'package:ssk_ruamjai/components/input_text/k_input_field.dart';
+import 'package:ssk_ruamjai/screens/details_patient/details_patient.dart';
 import 'package:ssk_ruamjai/screens/form_add_patient/form_add_patient.dart';
 import 'package:ssk_ruamjai/util/constants.dart';
 import 'package:animated_size_and_fade/animated_size_and_fade.dart';
@@ -152,58 +153,23 @@ class _AuthoritiesLevelOneState extends State<AuthoritiesLevelOne> {
                       color: Colors.yellow.shade400,
                     ),
                   ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                    alignment: Alignment.center,
-                    height: 64,
-                    color: Colors.white,
-                    child: Text(
-                      "วีระพันธ์  บุญบุตร",
-                      overflow: TextOverflow.fade,
-                      softWrap: false,
-                      style: TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.normal),
-                    ),
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    height: 64,
-                    color: Colors.white,
-                    child: Text(
-                      "0999999999",
-                      style: TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.normal),
-                    ),
-                  ),
-                ],
-              ),
-              TableRow(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: kDisabledPrimaryColor.withOpacity(.5),
-                  ),
-                ),
-                children: <Widget>[
-                  Container(
-                    alignment: Alignment.center,
-                    height: 64,
-                    color: Colors.white,
-                    child: Icon(
-                      Icons.circle,
-                      color: Colors.yellow.shade400,
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                    alignment: Alignment.center,
-                    height: 64,
-                    color: Colors.white,
-                    child: Text(
-                      "วีระพันธ์  บุญบุตร",
-                      overflow: TextOverflow.fade,
-                      softWrap: false,
-                      style: TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.normal),
+                  InkWell(
+                    onTap: () {
+                      Get.toNamed(DetailPatient.routeName);
+                    },
+                    child: Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                      alignment: Alignment.center,
+                      height: 64,
+                      color: Colors.white,
+                      child: Text(
+                        "วีระพันธ์  บุญบุตร",
+                        overflow: TextOverflow.fade,
+                        softWrap: false,
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.normal),
+                      ),
                     ),
                   ),
                   Container(
