@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ssk_ruamjai/components/buttons/k_button.dart';
-import 'package:ssk_ruamjai/components/buttons/k_button_outlined.dart';
-import 'package:ssk_ruamjai/components/input_text/k_input_field.dart';
 import 'package:ssk_ruamjai/screens/details_patient/details_patient.dart';
 import 'package:ssk_ruamjai/screens/form_add_patient/form_add_patient.dart';
 import 'package:ssk_ruamjai/util/constants.dart';
-import 'package:animated_size_and_fade/animated_size_and_fade.dart';
 
 // ! หน้าสำหรับเจ้าหน้าที่ อสม
 class AuthoritiesLevelOne extends StatefulWidget {

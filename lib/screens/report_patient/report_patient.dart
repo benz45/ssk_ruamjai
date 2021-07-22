@@ -245,7 +245,7 @@ class ReportPatientPoster extends StatelessWidget {
 
                             // * Result Number
                             Text(
-                              "+124",
+                              "+125",
                               style: context.textTheme.headline2!.copyWith(
                                 color: kPrimaryColor.withOpacity(.75),
                                 fontWeight: FontWeight.w300,
@@ -287,7 +287,7 @@ class ReportPatientPoster extends StatelessWidget {
 
                             // * Result Number
                             Text(
-                              "+12",
+                              "+0",
                               style: context.textTheme.headline2!.copyWith(
                                   color: Colors.grey.withOpacity(.75),
                                   fontWeight: FontWeight.w300),

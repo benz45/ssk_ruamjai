@@ -168,48 +168,67 @@ class _DetailPatientState extends State<DetailPatient>
                         children: [
                           Row(
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: kDefaultPadding * 2),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "วีระพันธ์ บุญบุตร",
-                                      style: context.textTheme.headline5!
-                                          .copyWith(
-                                              color: Colors.black87,
-                                              fontWeight: FontWeight.w500),
-                                    ),
-                                    SizedBox(height: 8),
-                                    KTextLink(
-                                      onPressed: () {
-                                        Get.toNamed(FormEditPatient.routeName);
-                                      },
-                                      arrowIcon: false,
-                                      text: "แก้ไขข้อมูลผู้ป่วย",
-                                    )
-                                  ],
+                              Expanded(
+                                flex: 4,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: kDefaultPadding * 2),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Flexible(
+                                            flex: 1,
+                                            child: Text(
+                                              "วีระพันธ์ บุญบุตรasdasdasd",
+                                              overflow: TextOverflow.fade,
+                                              softWrap: true,
+                                              style: context
+                                                  .textTheme.headline5!
+                                                  .copyWith(
+                                                      color: Colors.black87,
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 8),
+                                      KTextLink(
+                                        onPressed: () {
+                                          Get.toNamed(
+                                              FormEditPatient.routeName);
+                                        },
+                                        arrowIcon: false,
+                                        text: "แก้ไขข้อมูลผู้ป่วย",
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
-                              Spacer(),
-                              Container(
-                                width: context.isPhone
-                                    ? kDefaultPadding * 6
-                                    : kDefaultPadding * 8,
-                                child: ValueBuilder(
-                                  initialValue: false,
-                                  builder: (bool? val, Function(bool)? update) {
-                                    return KButton(
-                                      isLoading: val!,
-                                      text: 'รับผู้ป่วยเข้า',
-                                      onPressed: () {
-                                        update!(true);
-                                      },
-                                    );
-                                  },
+                              Expanded(
+                                flex: context.isPhone ? 2 : 1,
+                                child: Container(
+                                  width: context.isPhone
+                                      ? kDefaultPadding * 6
+                                      : kDefaultPadding * 8,
+                                  child: ValueBuilder(
+                                    initialValue: false,
+                                    builder:
+                                        (bool? val, Function(bool)? update) {
+                                      return KButton(
+                                        isLoading: val!,
+                                        text: 'รับเข้า',
+                                        onPressed: () {
+                                          update!(true);
+                                        },
+                                      );
+                                    },
+                                  ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                           // * สถานะผู้ป่วย
@@ -220,9 +239,20 @@ class _DetailPatientState extends State<DetailPatient>
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Text(
-                                "สถานะผู้ป่วย",
-                                style: context.textTheme.headline6,
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "สถานะผู้ป่วย",
+                                    style: context.textTheme.headline6,
+                                  ),
+                                  SizedBox(height: 8),
+                                  Text(
+                                    "ปรับสถานะตามอาการผู้ป่วย",
+                                    style: context.textTheme.subtitle1!
+                                        .copyWith(color: Colors.black54),
+                                  ),
+                                ],
                               ),
                               Spacer(),
                               Padding(

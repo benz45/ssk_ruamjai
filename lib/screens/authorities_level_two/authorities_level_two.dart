@@ -220,16 +220,16 @@ class _AuthoritiesLevelTwoState extends State<AuthoritiesLevelTwo>
               )
             ],
           ),
-          SizedBox(
-            height: kDefaultPadding,
-          ),
+          // * อธิบายสัญญาลักษ์ต่าง ๆ บนตาราง
+          DescriptionSymbol(),
+
           Table(
             border:
                 TableBorder.all(color: kDisabledPrimaryColor.withOpacity(.5)),
             defaultVerticalAlignment: TableCellVerticalAlignment.middle,
             columnWidths: {
-              0: FractionColumnWidth(.15),
-              1: FractionColumnWidth(.5),
+              2: FractionColumnWidth(.5),
+              3: FractionColumnWidth(.3),
             },
             children: <TableRow>[
               TableRow(
@@ -243,7 +243,23 @@ class _AuthoritiesLevelTwoState extends State<AuthoritiesLevelTwo>
                     alignment: Alignment.center,
                     height: 64,
                     color: Colors.white,
-                    child: Text("สถานะ"),
+                    child: Text(
+                      "S",
+                      style: context.textTheme.subtitle1!.copyWith(
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    height: 64,
+                    color: Colors.white,
+                    child: Text(
+                      "B",
+                      style: context.textTheme.subtitle1!.copyWith(
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
                   ),
                   Container(
                     alignment: Alignment.center,
@@ -251,8 +267,9 @@ class _AuthoritiesLevelTwoState extends State<AuthoritiesLevelTwo>
                     color: Colors.white,
                     child: Text(
                       "ชื่อ-นามสกุล",
-                      style: TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.normal),
+                      style: context.textTheme.subtitle1!.copyWith(
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                   Container(
@@ -261,14 +278,16 @@ class _AuthoritiesLevelTwoState extends State<AuthoritiesLevelTwo>
                     color: Colors.white,
                     child: Text(
                       "เบอร์โทรศัพท์",
-                      style: TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.normal),
+                      style: context.textTheme.subtitle1!.copyWith(
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ],
               ),
               TableRow(
                 decoration: BoxDecoration(
+                  color: kPrimaryColor,
                   border: Border.all(
                     color: kDisabledPrimaryColor.withOpacity(.5),
                   ),
@@ -281,6 +300,15 @@ class _AuthoritiesLevelTwoState extends State<AuthoritiesLevelTwo>
                     child: Icon(
                       Icons.circle,
                       color: Colors.yellow.shade400,
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    height: 64,
+                    color: Colors.white,
+                    child: Icon(
+                      Icons.bed_outlined,
+                      color: kSuccessColor,
                     ),
                   ),
                   InkWell(
@@ -297,8 +325,6 @@ class _AuthoritiesLevelTwoState extends State<AuthoritiesLevelTwo>
                         "วีระพันธ์  บุญบุตร",
                         overflow: TextOverflow.fade,
                         softWrap: false,
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.normal),
                       ),
                     ),
                   ),
@@ -308,14 +334,14 @@ class _AuthoritiesLevelTwoState extends State<AuthoritiesLevelTwo>
                     color: Colors.white,
                     child: Text(
                       "0999999999",
-                      style: TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.normal),
+                      softWrap: false,
                     ),
                   ),
                 ],
               ),
               TableRow(
                 decoration: BoxDecoration(
+                  color: kPrimaryColor,
                   border: Border.all(
                     color: kDisabledPrimaryColor.withOpacity(.5),
                   ),
@@ -331,98 +357,29 @@ class _AuthoritiesLevelTwoState extends State<AuthoritiesLevelTwo>
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                    alignment: Alignment.center,
-                    height: 64,
-                    color: Colors.white,
-                    child: Text(
-                      "วีระพันธ์  บุญบุตร",
-                      overflow: TextOverflow.fade,
-                      softWrap: false,
-                      style: TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.normal),
-                    ),
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    height: 64,
-                    color: Colors.white,
-                    child: Text(
-                      "0999999999",
-                      style: TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.normal),
-                    ),
-                  ),
-                ],
-              ),
-              TableRow(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: kDisabledPrimaryColor.withOpacity(.5),
-                  ),
-                ),
-                children: <Widget>[
-                  Container(
                     alignment: Alignment.center,
                     height: 64,
                     color: Colors.white,
                     child: Icon(
-                      Icons.circle,
-                      color: Colors.yellow.shade400,
+                      Icons.access_time,
+                      color: Colors.black54,
                     ),
                   ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                    alignment: Alignment.center,
-                    height: 64,
-                    color: Colors.white,
-                    child: Text(
-                      "วีระพันธ์  บุญบุตร",
-                      overflow: TextOverflow.fade,
-                      softWrap: false,
-                      style: TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.normal),
-                    ),
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    height: 64,
-                    color: Colors.white,
-                    child: Text(
-                      "0999999999",
-                      style: TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.normal),
-                    ),
-                  ),
-                ],
-              ),
-              TableRow(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: kDisabledPrimaryColor.withOpacity(.5),
-                  ),
-                ),
-                children: <Widget>[
-                  Container(
-                    alignment: Alignment.center,
-                    height: 64,
-                    color: Colors.white,
-                    child: Icon(
-                      Icons.circle,
-                      color: Colors.yellow.shade400,
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                    alignment: Alignment.center,
-                    height: 64,
-                    color: Colors.white,
-                    child: Text(
-                      "วีระพันธ์  บุญบุตร",
-                      overflow: TextOverflow.fade,
-                      softWrap: false,
-                      style: TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.normal),
+                  InkWell(
+                    onTap: () {
+                      Get.toNamed(DetailPatient.routeName);
+                    },
+                    child: Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                      alignment: Alignment.center,
+                      height: 64,
+                      color: Colors.white,
+                      child: Text(
+                        "วีระพันธ์  บุญบุตร",
+                        overflow: TextOverflow.fade,
+                        softWrap: false,
+                      ),
                     ),
                   ),
                   Container(
@@ -431,49 +388,7 @@ class _AuthoritiesLevelTwoState extends State<AuthoritiesLevelTwo>
                     color: Colors.white,
                     child: Text(
                       "0999999999",
-                      style: TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.normal),
-                    ),
-                  ),
-                ],
-              ),
-              TableRow(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: kDisabledPrimaryColor.withOpacity(.5),
-                  ),
-                ),
-                children: <Widget>[
-                  Container(
-                    alignment: Alignment.center,
-                    height: 64,
-                    color: Colors.white,
-                    child: Icon(
-                      Icons.circle,
-                      color: Colors.yellow.shade400,
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                    alignment: Alignment.center,
-                    height: 64,
-                    color: Colors.white,
-                    child: Text(
-                      "วีระพันธ์  บุญบุตร",
-                      overflow: TextOverflow.fade,
                       softWrap: false,
-                      style: TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.normal),
-                    ),
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    height: 64,
-                    color: Colors.white,
-                    child: Text(
-                      "0999999999",
-                      style: TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.normal),
                     ),
                   ),
                 ],
@@ -482,6 +397,64 @@ class _AuthoritiesLevelTwoState extends State<AuthoritiesLevelTwo>
           ),
           SizedBox(
             height: kDefaultPadding * 5,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class DescriptionSymbol extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: kDefaultPadding),
+      child: Row(
+        children: [
+          Text(
+            "S = สถานะของผู้ป่วย",
+            style: context.textTheme.subtitle1!.copyWith(
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          SizedBox(width: kDefaultPadding),
+          Text(
+            "B = สถานะรับเข้าผู้ป่วย",
+            style: context.textTheme.subtitle1!.copyWith(
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          SizedBox(width: kDefaultPadding),
+          Container(
+            alignment: Alignment.center,
+            height: 64,
+            color: Colors.white,
+            child: Icon(
+              Icons.bed_outlined,
+              color: kSuccessColor,
+            ),
+          ),
+          Text(
+            " = ผู้ป่วยได้รับเตียงแล้ว",
+            style: context.textTheme.subtitle1!.copyWith(
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          SizedBox(width: kDefaultPadding),
+          Container(
+            alignment: Alignment.center,
+            height: 64,
+            color: Colors.white,
+            child: Icon(
+              Icons.access_time,
+              color: Colors.black54,
+            ),
+          ),
+          Text(
+            " = ผู้ป่วยกำลังรอเตียง",
+            style: context.textTheme.subtitle1!.copyWith(
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ],
       ),
