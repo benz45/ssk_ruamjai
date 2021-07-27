@@ -27,8 +27,11 @@ dependencies:
   animated_size_and_fade: ^2.0.0
   animations: ^2.0.1
   cupertino_icons: ^1.0.2
+  flutter_dotenv: ^5.0.0
   get: ^4.1.4
+  get_storage: ^2.0.3
   google_fonts: ^2.1.0
+  http: ^0.13.3
   intl: ^0.17.0
   mask_text_input_formatter: ^2.0.0
 
@@ -46,6 +49,7 @@ flutter:
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
   assets:
+    - .env
     - assets/
     - assets/images/
   # An image asset can refer to one or more resolution-specific "variants", see

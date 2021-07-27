@@ -3,25 +3,32 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:ssk_ruamjai/bindings/operation_bindings.dart';
 import 'package:ssk_ruamjai/components/k_drawer.dart';
+import 'package:ssk_ruamjai/components/k_progress.dart';
 import 'package:ssk_ruamjai/components/navbar/navbar.dart';
 import 'package:ssk_ruamjai/controllers/navbar_menu_controller.dart';
-import 'package:ssk_ruamjai/screens/authorities_level_one/authorities_level_one.dart';
+import 'package:ssk_ruamjai/controllers/user.controller.dart';
 import 'package:ssk_ruamjai/screens/authorities_level_two/authorities_level_two.dart';
 import 'package:ssk_ruamjai/screens/details_patient/details_patient.dart';
 import 'package:ssk_ruamjai/screens/form_add_patient/form_add_patient.dart';
 import 'package:ssk_ruamjai/screens/form_edit_patient/form_edit_patient.dart';
 import 'package:ssk_ruamjai/screens/home_screen/home_screen.dart';
+import 'package:ssk_ruamjai/screens/login_screen/login_screen.dart';
 import 'package:ssk_ruamjai/screens/report_patient/report_patient.dart';
 import 'package:ssk_ruamjai/theme.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await GetStorage.init();
+  await dotenv.load(fileName: ".env");
   runApp(Main());
 }
 
 class Main extends StatelessWidget {
+  final box = GetStorage();
   @override
   Widget build(BuildContext context) {
     loadImage(context);
@@ -72,7 +79,6 @@ class Operation extends StatelessWidget {
         _navBarMenuController.setOnDrawerChanged(value);
       },
       drawer: KDrawer(),
-      // TODO:
       body: FetchNewsData(),
     );
   }
@@ -90,19 +96,6 @@ class FetchNewsData extends StatelessWidget {
       ],
     );
     return _customScrollView;
-    // return Center(
-    //   child: Row(
-    //     mainAxisAlignment: MainAxisAlignment.center,
-    //     children: [
-    //       Text(
-    //         'กรุณารอสักครู่',
-    //         style: context.textTheme.bodyText2,
-    //       ),
-    //       SizedBox(width: 15),
-    //       SizedBox(child: KProgress(), width: 18, height: 18)
-    //     ],
-    //   ),
-    // );
   }
 }
 
@@ -114,18 +107,15 @@ class SwitchPage extends StatefulWidget {
 
 class _SwitchSwitchPageState extends State<SwitchPage>
     with SingleTickerProviderStateMixin {
-  final List<Widget> _listPosters = [
-    HomeScreen(),
-    ReportPatient(),
-    SizedBox(),
-    AuthoritiesLevelTwo()
-    // TODO:
-    // LoginScreen(),
-  ];
-
   final _navBarMenuController = Get.find<NavBarMenuController>();
   @override
   Widget build(BuildContext context) {
+    final List<Widget> _listPosters = [
+      HomeScreen(),
+      ReportPatient(),
+      SizedBox(),
+      OfficerOperation(),
+    ];
     return SliverList(
       delegate: SliverChildListDelegate(
         [
@@ -155,5 +145,33 @@ class _SwitchSwitchPageState extends State<SwitchPage>
         ],
       ),
     );
+  }
+}
+
+class OfficerOperation extends GetView<UserController> {
+  @override
+  Widget build(BuildContext context) {
+    return Obx(() {
+      // * Loading officer screen
+      if (controller.getIsLoading) {
+        return Container(
+          height: context.height - NavBar().navBarHeight,
+          child: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'กรุณารอสักครู่',
+                  style: context.textTheme.bodyText2,
+                ),
+                SizedBox(width: 15),
+                SizedBox(child: KProgress(), width: 18, height: 18)
+              ],
+            ),
+          ),
+        );
+      }
+      return controller.getIsUser ? AuthoritiesLevelTwo() : LoginScreen();
+    });
   }
 }

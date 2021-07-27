@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ssk_ruamjai/components/buttons/k_button.dart';
 import 'package:ssk_ruamjai/components/buttons/k_button_outlined.dart';
+import 'package:ssk_ruamjai/components/buttons/k_text_link.dart';
 import 'package:ssk_ruamjai/components/input_text/k_input_field.dart';
+import 'package:ssk_ruamjai/controllers/user.controller.dart';
 import 'package:ssk_ruamjai/screens/details_patient/details_patient.dart';
 import 'package:ssk_ruamjai/screens/form_add_patient/form_add_patient.dart';
 import 'package:ssk_ruamjai/util/constants.dart';
@@ -17,6 +19,8 @@ class AuthoritiesLevelTwo extends StatefulWidget {
 
 class _AuthoritiesLevelTwoState extends State<AuthoritiesLevelTwo>
     with TickerProviderStateMixin {
+  final _userController = Get.find<UserController>();
+
   // ว่าง = true
   // ไม่ว่าง = false
   bool _statusBadValue = true;
@@ -33,24 +37,41 @@ class _AuthoritiesLevelTwoState extends State<AuthoritiesLevelTwo>
             height: kDefaultPadding * 2,
           ),
           // * Authoritie detail
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    "นายวีระพันธ์ บุญบุตร",
-                    style: context.textTheme.headline6,
-                  ),
-                  Text(
-                    "เจ้าหน้าที่โรงพยาบาลสนาม อ.กันทรลักษ์",
-                    style: context.textTheme.subtitle1,
-                  ),
-                ],
-              )
-            ],
+          Obx(
+            () => Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          _userController.getUser.account?.username ?? notFound,
+                          style: context.textTheme.headline6,
+                        ),
+                        SizedBox(width: 8),
+                        // Text(
+                        //   _userController.getUser.profile?.lastName ?? notFound,
+                        //   style: context.textTheme.headline6,
+                        // ),
+                      ],
+                    ),
+                    Text(
+                      "เจ้าหน้าที่โรงพยาบาลสนาม อ.กันทรลักษ์",
+                      style: context.textTheme.subtitle1,
+                    ),
+                  ],
+                ),
+                Spacer(),
+                KTextLink(
+                    text: 'ออกจากระบบ',
+                    onPressed: () {
+                      _userController.logout();
+                    })
+              ],
+            ),
           ),
           SizedBox(
             height: kDefaultPadding * 4,

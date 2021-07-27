@@ -1,3 +1,5 @@
+*.env
+*.fvm
 # Miscellaneous
 *.class
 *.lock

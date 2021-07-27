@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ssk_ruamjai/components/buttons/k_button.dart';
 import 'package:ssk_ruamjai/components/input_text/k_input_field.dart';
+import 'package:ssk_ruamjai/components/k_toast.dart';
 import 'package:ssk_ruamjai/controllers/navbar_menu_controller.dart';
+import 'package:ssk_ruamjai/controllers/user.controller.dart';
+import 'package:ssk_ruamjai/model/login.model.dart';
 import 'package:ssk_ruamjai/util/constants.dart';
 
 class ContentLogin extends StatefulWidget {
@@ -12,8 +15,9 @@ class ContentLogin extends StatefulWidget {
 
 class _ContentLoginState extends State<ContentLogin> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _userController = Get.find<UserController>();
 
   void _toHomePoster() {
     Get.find<NavBarMenuController>().setSelectedIndex(0);
@@ -28,9 +32,9 @@ class _ContentLoginState extends State<ContentLogin> {
 
   @override
   void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
     super.dispose();
-    _emailController.clear();
-    _passwordController.clear();
   }
 
   @override
@@ -167,8 +171,26 @@ class _ContentLoginState extends State<ContentLogin> {
   }
 
   void _onLogin({required String email, required String password}) async {
-    _eventLoad();
-    // TODO
-    _eventLoad();
+    try {
+      _eventLoad();
+      final res = await _userController
+          .login(LoginModel(username: email, password: password));
+
+      if (!res.status!) {
+        _eventLoad();
+        if (res.message == LoginResponse.LoginBadStatus.toString()) {
+          kToast(
+            'อีเมล หรือรหัสผ่านไม่ถูกต้อง',
+            Text('กรุณาตรวจสอบข้อมูลใหม่อีกครั้ง'),
+          );
+        }
+      }
+    } catch (e) {
+      kToast(
+        'เกิดข้อผิดพลาดบางอย่างในการเข้าสู่ระบบ',
+        Text('$e'),
+      );
+      _eventLoad();
+    }
   }
 }

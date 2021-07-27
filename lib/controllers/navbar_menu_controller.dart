@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 class NavBarMenuController extends GetxController {
   // Number of screen
-  RxInt _selectedIndex = 3.obs;
+  RxInt _selectedIndex = 0.obs;
 
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final ScrollController _scrollController = ScrollController();

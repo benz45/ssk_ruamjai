@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:ssk_ruamjai/components/buttons/k_button.dart';
-import 'package:ssk_ruamjai/components/buttons/k_text_button.dart';
 import 'package:ssk_ruamjai/components/buttons/k_text_link.dart';
-import 'package:ssk_ruamjai/components/k_toast.dart';
-import 'package:ssk_ruamjai/data.dart';
+// import 'package:ssk_ruamjai/components/k_toast.dart';
+// import 'package:ssk_ruamjai/data.dart';
 import 'package:ssk_ruamjai/screens/form_edit_patient/form_edit_patient.dart';
 import 'package:ssk_ruamjai/util/constants.dart';
 
@@ -30,76 +29,76 @@ class _DetailPatientState extends State<DetailPatient>
       mask: '##-##-####', filter: {"#": RegExp(r'[0-9]')});
 
   // อำเภอภูมิลำเนา
-  late Map<String, String> _initDistrict;
+  // late Map<String, String> _initDistrict;
 // ช่วยเหลือตัวเองได้หรือไม่ *
-  late Map<String, String> _initData0;
-// ผู้ป่วยอยู่ในพื้นที่จังหวัดศรีสะเกษหรือไม่
-  late Map<String, String> _initData1;
-// มีอาการหอบเหนื่อย หายใจเร็ว หายใจไม่สะดวก หรือปอดติดเชื้อหรือไม่
-  late Map<String, String> _initData2;
-// อาการเจ็บป่วยเบื้องต้น *
-  late Map<String, String> _initData3;
-// โรคที่เพิ่มความเสี่ยง
-// เลือกตัวเลือกที่ใช่ทั้งหมด
-  late Map<String, String> _initData4;
-// เพศ
-  late Map<String, String> _initSex;
+//   late Map<String, String> _initData0;
+// // ผู้ป่วยอยู่ในพื้นที่จังหวัดศรีสะเกษหรือไม่
+//   late Map<String, String> _initData1;
+// // มีอาการหอบเหนื่อย หายใจเร็ว หายใจไม่สะดวก หรือปอดติดเชื้อหรือไม่
+//   late Map<String, String> _initData2;
+// // อาการเจ็บป่วยเบื้องต้น *
+//   late Map<String, String> _initData3;
+// // โรคที่เพิ่มความเสี่ยง
+// // เลือกตัวเลือกที่ใช่ทั้งหมด
+//   late Map<String, String> _initData4;
+// // เพศ
+//   late Map<String, String> _initSex;
 
   @override
   void initState() {
     super.initState();
-    _initDistrict = district;
-    _initData0 = data0;
-    _initData1 = data1;
-    _initData2 = data2;
-    _initData3 = data3;
-    _initData4 = data4;
-    _initSex = sex;
-    _district = _initDistrict["23"]!;
+    // _initDistrict = district;
+    // _initData0 = data0;
+    // _initData1 = data1;
+    // _initData2 = data2;
+    // _initData3 = data3;
+    // _initData4 = data4;
+    // _initSex = sex;
+    // _district = _initDistrict["23"]!;
   }
 
   // district value
-  late String _district;
+  // late String _district;
 
-  // เพศ
-  int _sex = -1;
+  // // เพศ
+  // int _sex = -1;
 
-  // isPregnant
-  int _isPregnant = -1;
+  // // isPregnant
+  // int _isPregnant = -1;
 
-  // ช่วยเหลือตัวเองได้หรือไม่ *
-  int _data0 = -1;
+  // // ช่วยเหลือตัวเองได้หรือไม่ *
+  // int _data0 = -1;
 
-  // ผู้ป่วยอยู่ในพื้นที่จังหวัดศรีสะเกษหรือไม่
-  int _data1 = -1;
+  // // ผู้ป่วยอยู่ในพื้นที่จังหวัดศรีสะเกษหรือไม่
+  // int _data1 = -1;
 
-  // มีอาการหอบเหนื่อย หายใจเร็ว หายใจไม่สะดวก หรือปอดติดเชื้อหรือไม่
-  int _data2 = -1;
+  // // มีอาการหอบเหนื่อย หายใจเร็ว หายใจไม่สะดวก หรือปอดติดเชื้อหรือไม่
+  // int _data2 = -1;
 
   // อาการเจ็บป่วยเบื้องต้น
-  final _data3 = {
-    "0": false,
-    "1": false,
-    "2": false,
-    "3": false,
-    "4": false,
-    "5": false,
-    "6": false
-  };
+  // final _data3 = {
+  //   "0": false,
+  //   "1": false,
+  //   "2": false,
+  //   "3": false,
+  //   "4": false,
+  //   "5": false,
+  //   "6": false
+  // };
 
   // โรคที่เพิ่มความเสี่ยง
 // เลือกตัวเลือกที่ใช่ทั้งหมด
-  final _data4 = {
-    "0": false,
-    "1": false,
-    "2": false,
-    "3": false,
-    "4": false,
-    "5": false,
-    "6": false,
-    "7": false,
-    "8": false
-  };
+  // final _data4 = {
+  //   "0": false,
+  //   "1": false,
+  //   "2": false,
+  //   "3": false,
+  //   "4": false,
+  //   "5": false,
+  //   "6": false,
+  //   "7": false,
+  //   "8": false
+  // };
 
   // true = yellow
   // false = red
@@ -111,12 +110,12 @@ class _DetailPatientState extends State<DetailPatient>
     });
   }
 
-  final _idController = TextEditingController();
-  final _weightController = TextEditingController();
-  final _heightController = TextEditingController();
-  final _ageController = TextEditingController();
-  final _phoneNumberController = TextEditingController();
-  final _birthdayController = TextEditingController();
+  // final _idController = TextEditingController();
+  // final _weightController = TextEditingController();
+  // final _heightController = TextEditingController();
+  // final _ageController = TextEditingController();
+  // final _phoneNumberController = TextEditingController();
+  // final _birthdayController = TextEditingController();
   final _form = GlobalKey<FormState>();
 
   @override
@@ -413,71 +412,71 @@ class _DetailPatientState extends State<DetailPatient>
     );
   }
 
-  Widget _myRadioButton(
-      {required String title,
-      required int groupValue,
-      required int value,
-      required Function(int?) onChanged}) {
-    return RadioListTile(
-      value: value,
-      groupValue: groupValue,
-      onChanged: onChanged,
-      title: Text(
-        title,
-        style: context.isPhone
-            ? context.textTheme.subtitle2
-            : context.textTheme.subtitle1!.copyWith(color: Colors.black54),
-      ),
-    );
-  }
+  // Widget _myRadioButton(
+  //     {required String title,
+  //     required int groupValue,
+  //     required int value,
+  //     required Function(int?) onChanged}) {
+  //   return RadioListTile(
+  //     value: value,
+  //     groupValue: groupValue,
+  //     onChanged: onChanged,
+  //     title: Text(
+  //       title,
+  //       style: context.isPhone
+  //           ? context.textTheme.subtitle2
+  //           : context.textTheme.subtitle1!.copyWith(color: Colors.black54),
+  //     ),
+  //   );
+  // }
 
-  Future _onSubmit() async {
-    try {
-      if (_district == _initDistrict["23"]!) {
-        return kToast("กรุณากรอกอำเภอภูมิลำเนา",
-            Text('กรุณากรอกข้อมูลผู้ป่วยให้ครบถ้วนก่อนบันทึกไปยังฐานข้อมูล'));
-      }
+  // Future _onSubmit() async {
+  //   try {
+  //     if (_district == _initDistrict["23"]!) {
+  //       return kToast("กรุณากรอกอำเภอภูมิลำเนา",
+  //           Text('กรุณากรอกข้อมูลผู้ป่วยให้ครบถ้วนก่อนบันทึกไปยังฐานข้อมูล'));
+  //     }
 
-      if (_sex == -1) {
-        return kToast("กรุณาระบุเพศ",
-            Text('กรุณากรอกข้อมูลผู้ป่วยให้ครบถ้วนก่อนบันทึกไปยังฐานข้อมูล'));
-      }
+  //     if (_sex == -1) {
+  //       return kToast("กรุณาระบุเพศ",
+  //           Text('กรุณากรอกข้อมูลผู้ป่วยให้ครบถ้วนก่อนบันทึกไปยังฐานข้อมูล'));
+  //     }
 
-      if (_sex == 1 && _isPregnant == -1) {
-        return kToast('กรุณาระบุตัวเลือกคำถามหัวข้อ "เพศ" ให้ครบถ้วน',
-            Text('กรุณากรอกข้อมูลผู้ป่วยให้ครบถ้วนก่อนบันทึกไปยังฐานข้อมูล'));
-      }
+  //     if (_sex == 1 && _isPregnant == -1) {
+  //       return kToast('กรุณาระบุตัวเลือกคำถามหัวข้อ "เพศ" ให้ครบถ้วน',
+  //           Text('กรุณากรอกข้อมูลผู้ป่วยให้ครบถ้วนก่อนบันทึกไปยังฐานข้อมูล'));
+  //     }
 
-      final isValidForm = _form.currentState?.validate();
+  //     final isValidForm = _form.currentState?.validate();
 
-      // Form validate
-      if (!isValidForm!) {
-        return kToast("กรุณากรอกข้อมูลผู้ป่วยให้ครบถ้วน",
-            Text('กรุณากรอกข้อมูลผู้ป่วยให้ครบถ้วนก่อนบันทึกไปยังฐานข้อมูล'));
-      }
+  //     // Form validate
+  //     if (!isValidForm!) {
+  //       return kToast("กรุณากรอกข้อมูลผู้ป่วยให้ครบถ้วน",
+  //           Text('กรุณากรอกข้อมูลผู้ป่วยให้ครบถ้วนก่อนบันทึกไปยังฐานข้อมูล'));
+  //     }
 
-      // ช่วยเหลือตัวเองได้หรือไม่ *
-      if (_data0 == -1) {
-        return kToast('กรุณาระบุ "ช่วยเหลือตัวเองได้หรือไม่"',
-            Text('กรุณากรอกข้อมูลผู้ป่วยให้ครบถ้วนก่อนบันทึกไปยังฐานข้อมูล'));
-      }
+  //     // ช่วยเหลือตัวเองได้หรือไม่ *
+  //     if (_data0 == -1) {
+  //       return kToast('กรุณาระบุ "ช่วยเหลือตัวเองได้หรือไม่"',
+  //           Text('กรุณากรอกข้อมูลผู้ป่วยให้ครบถ้วนก่อนบันทึกไปยังฐานข้อมูล'));
+  //     }
 
-      // ผู้ป่วยอยู่ในพื้นที่จังหวัดศรีสะเกษหรือไม่
-      if (_data1 == -1) {
-        return kToast('กรุณาระบุ "ผู้ป่วยอยู่ในพื้นที่จังหวัดศรีสะเกษหรือไม่"',
-            Text('กรุณากรอกข้อมูลผู้ป่วยให้ครบถ้วนก่อนบันทึกไปยังฐานข้อมูล'));
-      }
+  //     // ผู้ป่วยอยู่ในพื้นที่จังหวัดศรีสะเกษหรือไม่
+  //     if (_data1 == -1) {
+  //       return kToast('กรุณาระบุ "ผู้ป่วยอยู่ในพื้นที่จังหวัดศรีสะเกษหรือไม่"',
+  //           Text('กรุณากรอกข้อมูลผู้ป่วยให้ครบถ้วนก่อนบันทึกไปยังฐานข้อมูล'));
+  //     }
 
-      // มีอาการหอบเหนื่อย หายใจเร็ว หายใจไม่สะดวก หรือปอดติดเชื้อหรือไม่
-      if (_data2 == -1) {
-        return kToast(
-            'กรุณาระบุ "มีอาการหอบเหนื่อย หายใจเร็ว หายใจไม่สะดวก หรือปอดติดเชื้อหรือไม่"',
-            Text('กรุณากรอกข้อมูลผู้ป่วยให้ครบถ้วนก่อนบันทึกไปยังฐานข้อมูล'));
-      }
-    } catch (err) {
-      throw (err);
-    }
-  }
+  //     // มีอาการหอบเหนื่อย หายใจเร็ว หายใจไม่สะดวก หรือปอดติดเชื้อหรือไม่
+  //     if (_data2 == -1) {
+  //       return kToast(
+  //           'กรุณาระบุ "มีอาการหอบเหนื่อย หายใจเร็ว หายใจไม่สะดวก หรือปอดติดเชื้อหรือไม่"',
+  //           Text('กรุณากรอกข้อมูลผู้ป่วยให้ครบถ้วนก่อนบันทึกไปยังฐานข้อมูล'));
+  //     }
+  //   } catch (err) {
+  //     throw (err);
+  //   }
+  // }
 }
 
 class DetailRow extends StatelessWidget {
