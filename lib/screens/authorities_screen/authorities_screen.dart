@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ssk_ruamjai/components/buttons/k_button.dart';
 import 'package:ssk_ruamjai/components/buttons/k_text_link.dart';
+import 'package:ssk_ruamjai/controllers/hospital.controller.dart';
 import 'package:ssk_ruamjai/controllers/user.controller.dart';
 import 'package:ssk_ruamjai/screens/authorities_screen/components/table_district.dart';
+import 'package:ssk_ruamjai/screens/authorities_screen/components/table_inside_district.dart';
 import 'package:ssk_ruamjai/screens/form_add_patient/form_add_patient.dart';
 import 'package:ssk_ruamjai/util/constants.dart';
 
@@ -17,6 +19,7 @@ class Authorities extends StatefulWidget {
 class _AuthoritiesState extends State<Authorities>
     with TickerProviderStateMixin {
   final _userController = Get.find<UserController>();
+  final _hospitalController = Get.find<HospitalController>();
 
   @override
   Widget build(BuildContext context) {
@@ -87,32 +90,7 @@ class _AuthoritiesState extends State<Authorities>
               ],
             ),
           ),
-          SizedBox(
-            height: kDefaultPadding * 4,
-            child: Divider(),
-          ),
-          // * สถานะเตียง
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    "สถานะเตียงทั้งหมด",
-                    style: context.textTheme.headline6,
-                  ),
-                ],
-              ),
-              Spacer(),
-              Text(
-                "ทั้งหมด 30, เหลือ 10",
-                style:
-                    context.textTheme.headline6!.copyWith(color: kSuccessColor),
-              )
-            ],
-          ),
+
           // SizedBox(
           //   height: kDefaultPadding * 4,
           //   child: Divider(),
@@ -203,73 +181,114 @@ class _AuthoritiesState extends State<Authorities>
           //     );
           //   },
           // ),
+
           // * แกไข จำนวนเตียง
           SizedBox(
             height: kDefaultPadding * 4,
             child: Divider(),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+          ValueBuilder(
+            initialValue: false,
+            builder: (bool? value, Function(bool)? _onUpdate) {
+              return Column(
                 children: [
-                  Text(
-                    "รายการศูนย์รักษา",
-                    style: context.textTheme.headline6,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "รายการศูนย์รักษา",
+                            style: context.textTheme.headline6,
+                          ),
+                          Text(
+                            value!
+                                ? "จังหวัดศรีสะเกษ"
+                                : "เขต${_userController.getDistrictUserString()}",
+                            style: context
+                                .responsiveValue(
+                                  desktop: context.textTheme.headline5,
+                                  tablet: context.textTheme.headline6,
+                                  mobile: context.textTheme.subtitle1,
+                                )!
+                                .copyWith(color: kPrimaryColor),
+                          ),
+                        ],
+                      ),
+                      Spacer(),
+                      // if (!value)
+                      Container(
+                        width: context.responsiveValue(
+                          desktop: kDefaultPadding * 10,
+                          tablet: kDefaultPadding * 10,
+                          mobile: kDefaultPadding * 6,
+                        ),
+                        child: KButton(
+                          text: value ? 'ย้อนกลับ' : 'ดูทั้งหมด',
+                          onPressed: () {
+                            _onUpdate!(!value);
+                          },
+                        ),
+                      )
+                    ],
                   ),
-                  Text(
-                    "ภายในจังหวัดศรีสะเกษ",
-                    style: context
-                        .responsiveValue(
-                          desktop: context.textTheme.headline6,
-                          tablet: context.textTheme.headline6,
-                          mobile: context.textTheme.subtitle1,
-                        )!
-                        .copyWith(color: kPrimaryColor),
+                  SizedBox(
+                    height: kDefaultPadding * 4,
+                    child: Divider(),
                   ),
+                  // * สถานะเตียง
+                  Obx(
+                    () => Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              "สถานะเตียงทั้งหมด",
+                              style: context.textTheme.headline6,
+                            ),
+                          ],
+                        ),
+                        Spacer(),
+                        Text(
+                          "${value ? _hospitalController.getAllTotalBad : _hospitalController.getTotalBadFromDistrict(_userController.getDistrictUser())}",
+                          style: context.textTheme.headline6!
+                              .copyWith(color: kSuccessColor),
+                        )
+                      ],
+                    ),
+                  ),
+
+                  SizedBox(
+                    height: kDefaultPadding,
+                  ),
+
+                  // // * อธิบายสัญญาลักษ์ต่าง ๆ บนตาราง
+                  // DescriptionSymbol(),
+
+                  SizedBox(
+                    height: kDefaultPadding,
+                  ),
+
+                  // * Table hospital
+
+                  // สำหรับดูทั้งหมด
+                  // TableHospital(),
+
+                  // สำหรับแยกเป็นอำเภอ
+                  if (value) ...{
+                    TableDistrict(),
+                  } else ...{
+                    // สำหรับดูภายในอำเภอ
+                    TableInsideDistrict(
+                        districtUser: _userController.getDistrictUser()),
+                  }
                 ],
-              ),
-              Spacer(),
-              // if (!value)
-              Container(
-                width: context.responsiveValue(
-                  desktop: kDefaultPadding * 10,
-                  tablet: kDefaultPadding * 10,
-                  mobile: kDefaultPadding * 6,
-                ),
-                child: KButton(
-                  text: 'ดูทั้งหมด',
-                  onPressed: () {
-                    Get.toNamed(FormAddPatient.routeName);
-                  },
-                ),
-              )
-            ],
-          ),
-          // SizedBox(
-          //   height: kDefaultPadding,
-          // ),
-          // // * อธิบายสัญญาลักษ์ต่าง ๆ บนตาราง
-          // DescriptionSymbol(),
-
-          SizedBox(
-            height: kDefaultPadding,
-          ),
-
-          // * Table hospital
-
-          // สำหรับดูทั้งหมด
-          // TableHospital(),
-
-          // สำหรับแยกเป็นอำเภอ
-          TableDistrict(),
-
-          // สำหรับดูภายในอำเภอ
-          // TableInsideDistrict(districtUser: _userController.getDistrictUser),
-
-          SizedBox(
-            height: kDefaultPadding,
+              );
+            },
           ),
 
           SizedBox(

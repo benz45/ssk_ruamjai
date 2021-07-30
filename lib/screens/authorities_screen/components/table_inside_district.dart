@@ -75,6 +75,17 @@ class _TableInsideDistrictState extends State<TableInsideDistrict> {
                   height: 64,
                   color: Colors.white,
                   child: Text(
+                    "ประเภท",
+                    style: context.textTheme.subtitle1!.copyWith(
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  height: 64,
+                  color: Colors.white,
+                  child: Text(
                     "จำนวนเตียงทั้งหมด",
                     style: context.textTheme.subtitle1!.copyWith(
                       fontWeight: FontWeight.w500,
@@ -94,6 +105,7 @@ class _TableInsideDistrictState extends State<TableInsideDistrict> {
                       ),
                     ),
                     children: <Widget>[
+                      // * Name
                       InkWell(
                         onTap: () {
                           Get.toNamed(DetailPatient.routeName);
@@ -111,6 +123,25 @@ class _TableInsideDistrictState extends State<TableInsideDistrict> {
                           ),
                         ),
                       ),
+                      // * Type
+                      InkWell(
+                        onTap: () {
+                          Get.toNamed(DetailPatient.routeName);
+                        },
+                        child: Container(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                          alignment: Alignment.center,
+                          height: 64,
+                          color: Colors.white,
+                          child: Text(
+                            "${_hospitalController.getHospitalType(allInsideDistrict[i].type!)}",
+                            overflow: TextOverflow.fade,
+                            softWrap: false,
+                          ),
+                        ),
+                      ),
+                      // * Total bad
                       InkWell(
                         onTap: () {
                           Get.toNamed(DetailPatient.routeName);

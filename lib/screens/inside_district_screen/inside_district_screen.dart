@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ssk_ruamjai/components/buttons/k_text_link.dart';
+import 'package:ssk_ruamjai/controllers/hospital.controller.dart';
 import 'package:ssk_ruamjai/main.dart';
 import 'package:ssk_ruamjai/model/hospital.model.dart';
 import 'package:ssk_ruamjai/screens/authorities_screen/components/table_inside_district.dart';
@@ -17,6 +18,8 @@ class InsideDistrictScreen extends StatefulWidget {
 class _InsideDistrictScreenState extends State<InsideDistrictScreen>
     with TickerProviderStateMixin {
   late District _district;
+
+  final _hospitalController = Get.find<HospitalController>();
 
   @override
   void initState() {
@@ -86,7 +89,7 @@ class _InsideDistrictScreenState extends State<InsideDistrictScreen>
                           ),
                           Text(
                             "ภายในอำเภอ${districtValues.reverse![_district]}",
-                            style: context.textTheme.headline6!
+                            style: context.textTheme.headline5!
                                 .copyWith(color: kPrimaryColor),
                           ),
                         ],
@@ -96,25 +99,20 @@ class _InsideDistrictScreenState extends State<InsideDistrictScreen>
                         crossAxisAlignment: CrossAxisAlignment.end,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          // TODO
                           Text(
                             "สถานะเตียง",
                             style: context.textTheme.headline6,
                           ),
                           // * Total bad district
-                          // Obx(() {
-                          //   // final totalBad = _hospitalController
-                          //   return Text(
-                          //     "ทั้งหมด 30, เหลือ 10",
-                          //     style: context.textTheme.headline6!
-                          //         .copyWith(color: kSuccessColor),
-                          //   );
-                          // })
-                          Text(
-                            "ทั้งหมด 30, เหลือ 10",
-                            style: context.textTheme.headline6!
-                                .copyWith(color: kSuccessColor),
-                          )
+                          Obx(() {
+                            final totalBad = _hospitalController
+                                .getTotalBadFromDistrict(_district);
+                            return Text(
+                              "$totalBad",
+                              style: context.textTheme.headline6!
+                                  .copyWith(color: kSuccessColor),
+                            );
+                          })
                         ],
                       ),
                     ],

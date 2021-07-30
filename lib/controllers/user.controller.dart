@@ -4,6 +4,8 @@ import 'dart:io';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:ssk_ruamjai/data/allHospital.dart';
+import 'package:ssk_ruamjai/data/userDemo.dart';
 import 'package:ssk_ruamjai/model/hospital.model.dart';
 import 'package:ssk_ruamjai/model/login.model.dart';
 import 'package:ssk_ruamjai/model/response.model.dart';
@@ -46,12 +48,16 @@ class UserController extends GetxController {
   // Is loading data user from api
   bool get getIsLoading => _isLoading.value;
 
-  District? getDistrictUser() {
+  District getDistrictUser() {
     final districtUser = districtValues.map![_user.value.profile!.district!];
     return District.values.firstWhere(
       (e) => e == districtUser,
       orElse: null,
     );
+  }
+
+  String getDistrictUserString() {
+    return _user.value.profile!.district!;
   }
 
   Future<Res> login(LoginModel data) async {
@@ -105,27 +111,30 @@ class UserController extends GetxController {
   // Get user profile from token
   Future<Res> _getUserProfile(String token) async {
     try {
-      var url = Uri.parse('${dotenv.env['API_GET_PROFILE']}');
-      var response = await http.get(url, headers: {
-        "Content-Type": "application/json; charset=utf-8",
-        "Authorization": "Token $token"
-      });
+      // var url = Uri.parse('${dotenv.env['API_GET_PROFILE']}');
+      // var response = await http.get(url, headers: {
+      //   "Content-Type": "application/json; charset=utf-8",
+      //   "Authorization": "Token $token"
+      // });
 
-      if (response.statusCode == 500) {
-        return Res(
-          status: false,
-          message: "${LoginResponse.InternalServerError}",
-        );
-      }
+      // if (response.statusCode == 500) {
+      //   return Res(
+      //     status: false,
+      //     message: "${LoginResponse.InternalServerError}",
+      //   );
+      // }
 
-      if (response.statusCode != 200) {
-        return Res(
-          status: false,
-          message: "${GetProfileResponse.GetProfileBadStatus}",
-        );
-      }
+      // if (response.statusCode != 200) {
+      //   return Res(
+      //     status: false,
+      //     message: "${GetProfileResponse.GetProfileBadStatus}",
+      //   );
+      // }
 
-      final responseJson = json.decode(utf8.decode(response.bodyBytes));
+      // final responseJson = json.decode(utf8.decode(response.bodyBytes));
+
+      // !Test
+      final responseJson = jsonDecode(jsonEncode(userDemoData));
 
       _isUser.value = true;
 

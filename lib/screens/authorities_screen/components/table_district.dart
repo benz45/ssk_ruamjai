@@ -66,7 +66,7 @@ class _TableDistrictState extends State<TableDistrict> {
                   height: 64,
                   color: Colors.white,
                   child: Text(
-                    "เขต",
+                    "อำเภอ",
                     style: context.textTheme.subtitle1!.copyWith(
                       fontWeight: FontWeight.w500,
                     ),
