@@ -4,12 +4,18 @@ import 'dart:io';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:ssk_ruamjai/model/hospital.model.dart';
 import 'package:ssk_ruamjai/model/login.model.dart';
 import 'package:ssk_ruamjai/model/response.model.dart';
 import 'package:ssk_ruamjai/model/user.model.dart';
 import 'package:http/http.dart' as http;
 
-enum LoginResponse { LoginSuccess, LoginBadStatus, WriteTokenError }
+enum LoginResponse {
+  LoginSuccess,
+  LoginBadStatus,
+  InternalServerError,
+  WriteTokenError
+}
 enum GetProfileResponse { GetProfileSuccess, GetProfileBadStatus }
 
 class UserController extends GetxController {
@@ -33,8 +39,20 @@ class UserController extends GetxController {
 
   // * Getter
   bool get getIsUser => _isUser.value;
+
+  // Detail user data
   UserModel get getUser => _user.value;
+
+  // Is loading data user from api
   bool get getIsLoading => _isLoading.value;
+
+  District? getDistrictUser() {
+    final districtUser = districtValues.map![_user.value.profile!.district!];
+    return District.values.firstWhere(
+      (e) => e == districtUser,
+      orElse: null,
+    );
+  }
 
   Future<Res> login(LoginModel data) async {
     try {
@@ -92,6 +110,13 @@ class UserController extends GetxController {
         "Content-Type": "application/json; charset=utf-8",
         "Authorization": "Token $token"
       });
+
+      if (response.statusCode == 500) {
+        return Res(
+          status: false,
+          message: "${LoginResponse.InternalServerError}",
+        );
+      }
 
       if (response.statusCode != 200) {
         return Res(

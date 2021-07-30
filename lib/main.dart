@@ -10,11 +10,12 @@ import 'package:ssk_ruamjai/components/k_progress.dart';
 import 'package:ssk_ruamjai/components/navbar/navbar.dart';
 import 'package:ssk_ruamjai/controllers/navbar_menu_controller.dart';
 import 'package:ssk_ruamjai/controllers/user.controller.dart';
-import 'package:ssk_ruamjai/screens/authorities_level_two/authorities_level_two.dart';
+import 'package:ssk_ruamjai/screens/authorities_screen/authorities_screen.dart';
 import 'package:ssk_ruamjai/screens/details_patient/details_patient.dart';
 import 'package:ssk_ruamjai/screens/form_add_patient/form_add_patient.dart';
 import 'package:ssk_ruamjai/screens/form_edit_patient/form_edit_patient.dart';
 import 'package:ssk_ruamjai/screens/home_screen/home_screen.dart';
+import 'package:ssk_ruamjai/screens/inside_district_screen/inside_district_screen.dart';
 import 'package:ssk_ruamjai/screens/login_screen/login_screen.dart';
 import 'package:ssk_ruamjai/screens/report_patient/report_patient.dart';
 import 'package:ssk_ruamjai/theme.dart';
@@ -38,6 +39,9 @@ class Main extends StatelessWidget {
       builder: themeBuilder,
       initialRoute: Operation.routeName,
       initialBinding: OperationBindings(),
+      // routingCallback: (routing) {
+      //   print(routing?.route?.isFirst);
+      // },
       getPages: [
         GetPage(
           name: Operation.routeName,
@@ -55,6 +59,9 @@ class Main extends StatelessWidget {
           name: DetailPatient.routeName,
           page: () => DetailPatient(),
         ),
+        GetPage(
+            name: '${InsideDistrictScreen.routeName}/:district',
+            page: () => InsideDistrictScreen()),
       ],
     );
   }
@@ -171,7 +178,7 @@ class OfficerOperation extends GetView<UserController> {
           ),
         );
       }
-      return controller.getIsUser ? AuthoritiesLevelTwo() : LoginScreen();
+      return controller.getIsUser ? Authorities() : LoginScreen();
     });
   }
 }

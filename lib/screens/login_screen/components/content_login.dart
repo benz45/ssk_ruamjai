@@ -184,6 +184,13 @@ class _ContentLoginState extends State<ContentLogin> {
             Text('กรุณาตรวจสอบข้อมูลใหม่อีกครั้ง'),
           );
         }
+
+        if (res.message == LoginResponse.InternalServerError.toString()) {
+          kToast(
+            'เกิดข้อผิดพลาด 500',
+            Text('LoginResponse.InternalServerError'),
+          );
+        }
       }
     } catch (e) {
       kToast(
