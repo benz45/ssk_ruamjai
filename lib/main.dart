@@ -39,9 +39,6 @@ class Main extends StatelessWidget {
       builder: themeBuilder,
       initialRoute: Operation.routeName,
       initialBinding: OperationBindings(),
-      // routingCallback: (routing) {
-      //   print(routing?.route?.isFirst);
-      // },
       getPages: [
         GetPage(
           name: Operation.routeName,
@@ -82,6 +79,7 @@ class Operation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _navBarMenuController.getScaffoldKey,
+      resizeToAvoidBottomInset: false,
       onDrawerChanged: (value) {
         _navBarMenuController.setOnDrawerChanged(value);
       },
@@ -113,8 +111,12 @@ class SwitchPage extends StatefulWidget {
 }
 
 class _SwitchSwitchPageState extends State<SwitchPage>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
+  SharedAxisTransitionType? _transitionType =
+      SharedAxisTransitionType.horizontal;
+
   final _navBarMenuController = Get.find<NavBarMenuController>();
+  final _userController = Get.find<UserController>();
   @override
   Widget build(BuildContext context) {
     final List<Widget> _listPosters = [
@@ -127,27 +129,39 @@ class _SwitchSwitchPageState extends State<SwitchPage>
       delegate: SliverChildListDelegate(
         [
           Obx(
-            () => AnimatedSizeAndFade(
-              vsync: this,
-              fadeDuration: const Duration(milliseconds: 300),
-              sizeDuration: const Duration(milliseconds: 300),
-              child: PageTransitionSwitcher(
-                duration: Duration(milliseconds: 400),
-                reverse: true,
-                transitionBuilder: (
-                  Widget child,
-                  Animation<double> animation,
-                  Animation<double> secondaryAnimation,
-                ) {
-                  return FadeThroughTransition(
-                    animation: animation,
-                    secondaryAnimation: secondaryAnimation,
-                    child: child,
-                  );
-                },
-                child: _listPosters[_navBarMenuController.getSelectedIndex],
-              ),
-            ),
+            () {
+              int defaultDurationFade = 300;
+
+              if (_userController.getIsUser) {
+                return Column(
+                  children: [
+                    _listPosters[_navBarMenuController.getSelectedIndex],
+                  ],
+                );
+              }
+
+              return AnimatedSizeAndFade(
+                vsync: this,
+                fadeDuration: Duration(milliseconds: defaultDurationFade),
+                sizeDuration: Duration(milliseconds: defaultDurationFade),
+                child: PageTransitionSwitcher(
+                  duration: Duration(milliseconds: 400),
+                  reverse: true,
+                  transitionBuilder: (
+                    Widget child,
+                    Animation<double> animation,
+                    Animation<double> secondaryAnimation,
+                  ) {
+                    return FadeThroughTransition(
+                      animation: animation,
+                      secondaryAnimation: secondaryAnimation,
+                      child: child,
+                    );
+                  },
+                  child: _listPosters[_navBarMenuController.getSelectedIndex],
+                ),
+              );
+            },
           ),
         ],
       ),

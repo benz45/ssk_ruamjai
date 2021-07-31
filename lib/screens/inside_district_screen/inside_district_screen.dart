@@ -21,6 +21,24 @@ class _InsideDistrictScreenState extends State<InsideDistrictScreen>
 
   final _hospitalController = Get.find<HospitalController>();
 
+  final String defaultFirstItemDropdown = 'ทั้งหมด';
+
+  // District value dropdown
+  late String _districtDropdown;
+
+  itemsDropdownHospitalType() {
+    final _listHospitalType =
+        _hospitalController.getAllHospitalType().values.toList();
+    _listHospitalType.insert(0, defaultFirstItemDropdown);
+
+    return _listHospitalType.map<DropdownMenuItem<String>>((String value) {
+      return DropdownMenuItem<String>(
+        value: value,
+        child: Text(value),
+      );
+    }).toList();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -34,6 +52,8 @@ class _InsideDistrictScreenState extends State<InsideDistrictScreen>
     } else {
       _district = Get.arguments;
     }
+
+    _districtDropdown = defaultFirstItemDropdown;
   }
 
   @override
@@ -118,17 +138,42 @@ class _InsideDistrictScreenState extends State<InsideDistrictScreen>
                     ],
                   ),
 
-                  SizedBox(
-                    height: kDefaultPadding,
+                  SizedBox(height: kDefaultPadding * 4, child: Divider()),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      DropdownButton<String>(
+                        value: _districtDropdown,
+                        icon: Icon(Icons.arrow_downward_outlined),
+                        elevation: 16,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: context.textTheme.subtitle1!.fontSize,
+                        ),
+                        underline: Container(
+                          height: 2,
+                          color: kPrimaryColor,
+                        ),
+                        onChanged: (newValue) {
+                          if (newValue != _districtDropdown)
+                            setState(() {
+                              _districtDropdown = newValue!;
+                            });
+                        },
+                        items: itemsDropdownHospitalType(),
+                      ),
+                    ],
                   ),
+                  SizedBox(height: kDefaultPadding),
 
                   // * Table hospital
-                  // TableHospital(),
-                  // TableDistrict(),
-                  TableInsideDistrict(districtUser: _district),
-
-                  SizedBox(
-                    height: kDefaultPadding,
+                  TableInsideDistrict(
+                    districtUser: _district,
+                    sort: _districtDropdown != defaultFirstItemDropdown
+                        ? _hospitalController
+                                .getHospitalTypeFromString(_districtDropdown) ??
+                            null
+                        : null,
                   ),
 
                   SizedBox(

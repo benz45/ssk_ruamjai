@@ -7,15 +7,20 @@ import 'package:ssk_ruamjai/screens/details_patient/details_patient.dart';
 import 'package:ssk_ruamjai/util/constants.dart';
 
 class TableInsideDistrict extends StatefulWidget {
-  TableInsideDistrict({required this.districtUser});
+  TableInsideDistrict({required this.districtUser, this.sort});
 
   final District districtUser;
+  final int? sort;
   @override
   _TableInsideDistrictState createState() => _TableInsideDistrictState();
 }
 
 class _TableInsideDistrictState extends State<TableInsideDistrict> {
   final _hospitalController = Get.find<HospitalController>();
+
+  navigate() {
+    Get.toNamed(DetailPatient.routeName);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +47,20 @@ class _TableInsideDistrictState extends State<TableInsideDistrict> {
           return Text(notFound);
         }
 
-        final allInsideDistrict =
-            _hospitalController.getInsideDistrict(widget.districtUser);
+        // * List data for table
+        final allInsideDistrict = _hospitalController.getInsideDistrict(
+          widget.districtUser,
+          sort: widget.sort,
+        );
+
+        if (allInsideDistrict!.isEmpty) {
+          return Center(
+            child: Text(
+              notFound,
+              style: context.textTheme.bodyText2,
+            ),
+          );
+        }
 
         return Table(
           border: TableBorder.all(color: kDisabledPrimaryColor.withOpacity(.5)),
@@ -95,7 +112,7 @@ class _TableInsideDistrictState extends State<TableInsideDistrict> {
               ],
             ),
             if (allInsideDistrict != null)
-              if (allInsideDistrict.length > 0)
+              if (allInsideDistrict.length > 0) ...{
                 for (var i = 0; i < allInsideDistrict.length; i++)
                   TableRow(
                     decoration: BoxDecoration(
@@ -107,9 +124,7 @@ class _TableInsideDistrictState extends State<TableInsideDistrict> {
                     children: <Widget>[
                       // * Name
                       InkWell(
-                        onTap: () {
-                          Get.toNamed(DetailPatient.routeName);
-                        },
+                        onTap: navigate,
                         child: Container(
                           padding:
                               EdgeInsets.symmetric(horizontal: kDefaultPadding),
@@ -125,9 +140,7 @@ class _TableInsideDistrictState extends State<TableInsideDistrict> {
                       ),
                       // * Type
                       InkWell(
-                        onTap: () {
-                          Get.toNamed(DetailPatient.routeName);
-                        },
+                        onTap: navigate,
                         child: Container(
                           padding:
                               EdgeInsets.symmetric(horizontal: kDefaultPadding),
@@ -143,9 +156,7 @@ class _TableInsideDistrictState extends State<TableInsideDistrict> {
                       ),
                       // * Total bad
                       InkWell(
-                        onTap: () {
-                          Get.toNamed(DetailPatient.routeName);
-                        },
+                        onTap: navigate,
                         child: Container(
                           alignment: Alignment.center,
                           height: 64,
@@ -159,6 +170,7 @@ class _TableInsideDistrictState extends State<TableInsideDistrict> {
                       ),
                     ],
                   ),
+              }
           ],
         );
       },

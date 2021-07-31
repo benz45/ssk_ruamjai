@@ -35,10 +35,32 @@ class HospitalController extends GetxController {
         0;
   }
 
-  List<Hospital>? getInsideDistrict(District districtUser) {
-    return _allHospital.value.hospitals
-        ?.where((e) => e.district == districtUser)
+  List<Hospital>? getInsideDistrict(District districtUser, {int? sort}) {
+    final _data = _allHospital.value.hospitals;
+    if (sort == null) {
+      return _data?.where((e) => e.district == districtUser).toList();
+    }
+
+    return _data
+        ?.where((e) => e.district == districtUser && e.type == sort + 1)
         .toList();
+  }
+
+  // Get all type hospital
+  Map<String, String> getAllHospitalType() {
+    return hospitalType;
+  }
+
+  // Get type hospital from name string
+  int? getHospitalTypeFromString(String value) {
+    final result = hospitalType.keys.firstWhere(
+      (element) => hospitalType[element] == value,
+      orElse: () => '',
+    );
+    if (result != '') {
+      return int.parse(result);
+    }
+    return null;
   }
 
   // Get type hospital
